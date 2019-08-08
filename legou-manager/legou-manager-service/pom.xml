@@ -9,8 +9,7 @@
 	</parent>
 	<artifactId>legou-manager-service</artifactId>
 
-<packaging>war
-</packaging>
+<packaging>war</packaging>
 	<!-- service模块的依赖 -->
 
 	<dependencies>

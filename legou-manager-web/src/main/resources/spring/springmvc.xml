@@ -23,6 +23,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+		<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
+	
+	
 	<!-- 从注册中心获取服务-->
 	<!--给当前项目起个名字用来在注册中心中心事-->
 	<dubbo:application name="legou-manager-web" />
