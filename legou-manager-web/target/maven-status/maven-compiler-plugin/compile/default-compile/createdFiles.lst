@@ -1,2 +1,3 @@
-com\legou\controller\ItemController.class
 com\legou\controller\PageController.class
+com\legou\controller\ItemCatController.class
+com\legou\controller\ItemController.class

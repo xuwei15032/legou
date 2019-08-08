@@ -11,7 +11,15 @@
   
 <dependencies>
 
+
+     <dependency>
+     <groupId>fastdfs_client</groupId>
+  <artifactId>fastdfs_client</artifactId>
+  <version>1.25</version>
+    </dependency>
+
 		<dependency>
+	
 			<groupId>com.legou</groupId>
 			<artifactId>legou-manager-interface</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
