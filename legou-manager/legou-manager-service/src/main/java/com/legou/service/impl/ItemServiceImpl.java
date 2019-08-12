@@ -1,5 +1,6 @@
 package com.legou.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,41 +9,74 @@ import org.springframework.stereotype.Service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.legou.common.pojo.EasyUIDataGridResult;
+import com.legou.common.utils.IDUtils;
+import com.legou.common.utils.LegouResult;
+import com.legou.mapper.TbItemDescMapper;
 import com.legou.mapper.TbItemMapper;
 import com.legou.pojo.TbItem;
+import com.legou.pojo.TbItemDesc;
 import com.legou.pojo.TbItemExample;
 import com.legou.service.ItemService;
 
 @Service
-public class ItemServiceImpl implements ItemService{
-	
+public class ItemServiceImpl implements ItemService {
+
 	@Autowired
 	private TbItemMapper tbItemMapper;
 
+	@Autowired
+	private TbItemDescMapper tbItemDescMapper;
+
 	@Override
 	public TbItem getItem(Long itemId) {
-		
+
 		return tbItemMapper.selectByPrimaryKey(itemId);
 	}
 
 	@Override
 	public EasyUIDataGridResult getItemList(Integer page, Integer rows) {
-		
+
 		PageHelper.startPage(page, rows);
-		
+
 		TbItemExample example = new TbItemExample();
-		
+
 		List<TbItem> selectByExampleList = tbItemMapper.selectByExample(example);
-		
+
 		PageInfo<TbItem> pageInfo = new PageInfo<TbItem>(selectByExampleList);
-		
+
 		EasyUIDataGridResult easyUIDataGridResult = new EasyUIDataGridResult();
 		easyUIDataGridResult.setRows(selectByExampleList);
 		easyUIDataGridResult.setTotal(pageInfo.getTotal());
-		
-		
-		
+
 		return easyUIDataGridResult;
+	}
+
+	@Override
+	public LegouResult save(TbItem tbItem, String desc) {
+
+		long itemId = IDUtils.genItemId();
+		System.out.println(itemId);
+		tbItem.setId(itemId);
+		tbItem.setStatus((byte) 1);
+		tbItem.setCreated(new Date());
+		tbItem.setUpdated(new Date());
+		tbItemMapper.insert(tbItem);
+
+		TbItemDesc tbItemDesc = new TbItemDesc();
+		tbItemDesc.setItemId(itemId);
+		tbItemDesc.setItemDesc(desc);
+		tbItemDesc.setCreated(new Date());
+		tbItemDesc.setUpdated(new Date());
+		tbItemDescMapper.insert(tbItemDesc);
+
+		return LegouResult.ok();
+	}
+
+	@Override
+	public LegouResult desc(long id) {
+		TbItemDesc desc  = tbItemDescMapper.selectByPrimaryKey(id);
+		LegouResult ls = new LegouResult(desc);
+		return ls;
 	}
 
 }

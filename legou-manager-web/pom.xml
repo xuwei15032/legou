@@ -17,6 +17,12 @@
   <artifactId>fastdfs_client</artifactId>
   <version>1.25</version>
     </dependency>
+    
+    <dependency>
+			<artifactId>legou-content-interface</artifactId>
+			<groupId>com.legou</groupId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
 		<dependency>
 	
@@ -105,6 +111,13 @@
 			<groupId>com.github.sgroschupf</groupId>
 			<artifactId>zkclient</artifactId>
 		</dependency>
+		
+		
+		<!-- 文件上传组件 -->
+			<dependency>
+				<groupId>commons-fileupload</groupId>
+				<artifactId>commons-fileupload</artifactId>
+			</dependency>
 
 	</dependencies>
 	

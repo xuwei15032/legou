@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.legou.common.pojo.EasyUIDataGridResult;
+import com.legou.common.utils.LegouResult;
 import com.legou.pojo.TbItem;
 import com.legou.service.ItemService;
 
@@ -36,11 +37,34 @@ public class ItemController {
 		return itemService.getItemList(page, rows);
 
 	}
+	
+	
+	@RequestMapping("/item/save")
+	@ResponseBody
+	public LegouResult saveItem(TbItem tbItem,String desc){
+		
+		LegouResult leoLegouResul = itemService.save(tbItem,desc);
+		
+		return leoLegouResul;
+	}
+	
+	
 
 	@RequestMapping("/test")
 	@ResponseBody
 	public String Test() {
 		return "hello test";
 	}
+	
+
+	@RequestMapping("/rest/item/query/item/desc/{id}")
+	@ResponseBody
+	public LegouResult desc(@PathVariable long id) {
+		return itemService.desc(id);
+	}
 
 }
+
+
+
+

@@ -1,3 +1,6 @@
+com\legou\controller\ContentCategoryController.class
+com\legou\controller\PicUploadController.class
+com\legou\controller\ContentController.class
 com\legou\controller\PageController.class
 com\legou\controller\ItemCatController.class
 com\legou\controller\ItemController.class
