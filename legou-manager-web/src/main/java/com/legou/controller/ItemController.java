@@ -57,14 +57,5 @@ public class ItemController {
 	}
 	
 
-	@RequestMapping("/rest/item/query/item/desc/{id}")
-	@ResponseBody
-	public LegouResult desc(@PathVariable long id) {
-		return itemService.desc(id);
-	}
 
 }
-
-
-
-

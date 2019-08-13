@@ -4,6 +4,7 @@
 	<groupId>com.github.pagehelper</groupId>
 	<artifactId>pagehelper</artifactId>
 	<version>3.4.2-v1</version>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.mybatis</groupId>

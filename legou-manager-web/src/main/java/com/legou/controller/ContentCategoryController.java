@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.legou.common.pojo.EasyUITreeNode;
+import com.legou.common.utils.LegouResult;
 import com.legou.content.service.ContentCategoryService;
 
 @Controller
@@ -25,6 +26,24 @@ public class ContentCategoryController {
 		
 		List<EasyUITreeNode> contentList= contentCategoryService.getConteCategoryList(id);
 		return contentList;
+	}
+	
+	@RequestMapping("/content/category/create")
+	@ResponseBody
+	public LegouResult createContentNode(Long parentId,String name) {
+		
+		LegouResult legouResult=contentCategoryService.addContentCategoryNode(parentId,name);
+		
+		return legouResult;
+	}
+	
+	@RequestMapping("/content/category/update")
+	public  LegouResult updateContentNode(Long id,String name) {
+	  
+		
+		LegouResult legouResult=contentCategoryService.updateCategoryNode(id,name);
+		return legouResult;
+		
 	}
 
 }
