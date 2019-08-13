@@ -24,7 +24,7 @@ public class PicUploadController {
 
 			// asdfasdf.png
 
-			System.out.println(uploadFile.getOriginalFilename());
+			
 
 			int i = uploadFile.getOriginalFilename().lastIndexOf(".") + 1;
 
@@ -37,7 +37,7 @@ public class PicUploadController {
 
 			url = hostname + url;
 
-			System.out.println(url);
+
 
 			Map map = new HashMap();
 			map.put("error", 0);

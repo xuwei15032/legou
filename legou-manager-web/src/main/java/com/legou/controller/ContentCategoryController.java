@@ -38,12 +38,19 @@ public class ContentCategoryController {
 	}
 	
 	@RequestMapping("/content/category/update")
+	@ResponseBody
 	public  LegouResult updateContentNode(Long id,String name) {
 	  
 		
 		LegouResult legouResult=contentCategoryService.updateCategoryNode(id,name);
 		return legouResult;
 		
+	}
+	
+	@RequestMapping("/content/category/delete/")
+	@ResponseBody
+	public  LegouResult deleteContentNode() {
+		return null;
 	}
 
 }

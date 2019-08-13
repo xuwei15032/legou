@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.legou.common.pojo.EasyUIDataGridResult;
 import com.legou.common.utils.LegouResult;
 import com.legou.content.service.ContentService;
 import com.legou.pojo.TbContent;
@@ -25,6 +26,13 @@ public class ContentController {
 		
 		return legouResult;
 		
+	}
+	
+	@RequestMapping("/content/query/list")
+	@ResponseBody
+	public EasyUIDataGridResult queryList(int page ,int rows) {
+		EasyUIDataGridResult easyUIDataGridResult = contentService.queryList(page,rows);
+		return easyUIDataGridResult;
 	}
 
 }

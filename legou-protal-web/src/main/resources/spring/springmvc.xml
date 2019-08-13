@@ -43,7 +43,7 @@
 	<!--告诉消费端注册中心的位置 -->
 	<dubbo:registry protocol="zookeeper" address="192.168.25.128:2181" />
 	<!--获取注册中心上的服务  -->
-	<!-- <dubbo:reference interface="com.legou.content.service.ContentCategoryService" id="itemService"/> -->
+	<dubbo:reference interface="com.legou.content.service.ContentService" id="contentService"/> 
 	
 
 		
