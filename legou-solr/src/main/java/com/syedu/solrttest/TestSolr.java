@@ -54,8 +54,7 @@ public class TestSolr {
 			 System.out.println( document.get("id"));
 			 System.out.println( document.get("item_title"));
 			 System.out.println( document.get("item_sell_point"));
-			 System.out.println( document.get("item_price"));
-			 
+			 System.out.println( document.get("item_price"));			 
 		}
 		 
 		 
