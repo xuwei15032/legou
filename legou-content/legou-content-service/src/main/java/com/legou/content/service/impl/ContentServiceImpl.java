@@ -32,27 +32,20 @@ public class ContentServiceImpl implements ContentService{
 	public LegouResult saveContent(TbContent tbContent) {
 		tbContent.setCreated(new Date());
 		tbContent.setUpdated(new Date());
-		tbContentMapper.insert(tbContent);
-		
-		jedisClientPool.hdel("CONTENT_LIST", tbContent.getCategoryId().toString());
-		
+		tbContentMapper.insert(tbContent);		
+		jedisClientPool.hdel("CONTENT_LIST", tbContent.getCategoryId().toString());		
 		return LegouResult.ok();
 	}
 
 	@Override
 	public EasyUIDataGridResult queryList(int page, int rows) {
 		PageHelper.startPage(page, rows);
-
 		TbContentExample example = new TbContentExample();
-
 		List<TbContent> selectByExampleList = tbContentMapper.selectByExample(example);
-
 		PageInfo<TbContent> pageInfo = new PageInfo<TbContent>(selectByExampleList);
-
 		EasyUIDataGridResult easyUIDataGridResult = new EasyUIDataGridResult();
 		easyUIDataGridResult.setRows(selectByExampleList);
 		easyUIDataGridResult.setTotal(pageInfo.getTotal());
-
 		return easyUIDataGridResult;
 	}
 

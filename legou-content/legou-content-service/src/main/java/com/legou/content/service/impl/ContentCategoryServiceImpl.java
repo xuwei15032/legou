@@ -54,24 +54,18 @@ public class ContentCategoryServiceImpl implements ContentCategoryService {
 		tbContentCategory.setName(name);
 		tbContentCategory.setStatus(1);
 		tbContentCategory.setSortOrder(1);
-		tbContentCategory.setIsParent(false);
-		
+		tbContentCategory.setIsParent(false);	
 		tbContentCategory.setCreated(new Date());
-		tbContentCategory.setUpdated(new Date());
-		
-		tbContentCategoryMapper.insert(tbContentCategory);
-		
-		TbContentCategory parentNodeCategory= tbContentCategoryMapper.selectByPrimaryKey(parentId);
-		
+		tbContentCategory.setUpdated(new Date());		
+		tbContentCategoryMapper.insert(tbContentCategory);	
+		TbContentCategory parentNodeCategory= tbContentCategoryMapper.selectByPrimaryKey(parentId);		
 		if(!parentNodeCategory.getIsParent()) {
 			parentNodeCategory.setIsParent(true);
 			tbContentCategoryMapper.updateByPrimaryKey(parentNodeCategory);
-		}
-		
+		}		
 		return LegouResult.ok(tbContentCategory);
 		
 	}
-
 	@Override
 	public LegouResult updateCategoryNode(Long id, String name) {
 		TbContentCategory tbContentCategory = new TbContentCategory();
