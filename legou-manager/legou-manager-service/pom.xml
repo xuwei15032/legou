@@ -12,7 +12,16 @@
 <packaging>war</packaging>
 	<!-- service模块的依赖 -->
 
+	
 	<dependencies>
+	      <dependency>
+				<groupId>org.apache.activemq</groupId>
+				<artifactId>activemq-all</artifactId>
+		
+			</dependency>
+	
+	
+	
 		<!-- interface -->
 		<dependency>
 			<groupId>com.legou</groupId>

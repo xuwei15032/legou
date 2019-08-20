@@ -3,7 +3,15 @@ package com.legou.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -26,6 +34,13 @@ public class ItemServiceImpl implements ItemService {
 
 	@Autowired
 	private TbItemDescMapper tbItemDescMapper;
+	
+	@Autowired
+	private  JmsTemplate jmsTemplate;
+	
+	//resource 默认按照名字注入
+    @Resource
+	private Destination activeMQTopic;
 
 	@Override
 	public TbItem getItem(Long itemId) {
@@ -61,13 +76,20 @@ public class ItemServiceImpl implements ItemService {
 		tbItem.setCreated(new Date());
 		tbItem.setUpdated(new Date());
 		tbItemMapper.insert(tbItem);
-
 		TbItemDesc tbItemDesc = new TbItemDesc();
 		tbItemDesc.setItemId(itemId);
 		tbItemDesc.setItemDesc(desc);
 		tbItemDesc.setCreated(new Date());
 		tbItemDesc.setUpdated(new Date());
 		tbItemDescMapper.insert(tbItemDesc);
+		
+		//每次添加一条商品就需要向mq里面发送一条消息
+		jmsTemplate.send(activeMQTopic, new MessageCreator() {
+			@Override
+			public Message createMessage(Session session) throws JMSException {
+				return session.createTextMessage(Long.toString(itemId));
+			}
+		});
 
 		return LegouResult.ok();
 	}

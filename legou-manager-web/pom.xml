@@ -18,6 +18,12 @@
   <version>1.25</version>
     </dependency>
     
+      <dependency>
+	    <artifactId>legou-search-interface</artifactId>
+	    <groupId>com.legou</groupId>
+		<version>0.0.1-SNAPSHOT</version>
+	   </dependency>
+    
     <dependency>
 			<artifactId>legou-content-interface</artifactId>
 			<groupId>com.legou</groupId>

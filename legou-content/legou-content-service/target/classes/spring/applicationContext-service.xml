@@ -22,8 +22,8 @@
 	<dubbo:protocol name="dubbo" port="20880" /> 
 	<!-- 把需要注册的服务暴露出去 -->
 	
-	<dubbo:service interface="com.legou.content.service.ContentCategoryService" ref="contentCategoryServiceImpl" />
+	<dubbo:service interface="com.legou.content.service.ContentCategoryService" ref="contentCategoryServiceImpl" timeout="80000"/>
 
- <dubbo:service interface="com.legou.content.service.ContentService" ref="contentServiceImpl" />
+ <dubbo:service interface="com.legou.content.service.ContentService" ref="contentServiceImpl" timeout="80000"/>
 	
 </beans>

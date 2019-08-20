@@ -21,8 +21,8 @@
 	<!--指定使用何种协议把服务注册到注册中心 -->
 	<dubbo:protocol name="dubbo" port="20883" /> 
 	<!-- 把需要注册的服务暴露出去 -->
-	<dubbo:service interface="com.legou.service.ItemService" ref="itemServiceImpl" />
+	<dubbo:service interface="com.legou.service.ItemService" ref="itemServiceImpl" timeout="80000"/>
 	
-	<dubbo:service interface="com.legou.service.ItemCatService" ref="itemCatServiceImpl" />
+	<dubbo:service interface="com.legou.service.ItemCatService" ref="itemCatServiceImpl" timeout="80000"/>
 	
 </beans>

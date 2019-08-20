@@ -11,6 +11,10 @@
   <!-- service模块的依赖 -->
 
 	<dependencies>
+	
+		
+	
+	
 		<!-- interface -->
 		<dependency>
 			<groupId>com.legou</groupId>
