@@ -23,7 +23,7 @@
     
     <!--spring为了操作jms专门封装了一个模板类 JmsTemplate  -->
     
-    <bean id="JmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <bean id="JmsTemplate" class="org.springframework.jms.core.JmsTemplate" >
       <property name="connectionFactory" ref="singleConnectionFactory"></property>     
     </bean>
     
@@ -38,7 +38,7 @@
     </bean>
     
     
-    <bean id="legouActiveMQListene" class="com.legou.search.mq.LegouActiveMQListener"></bean>
+    <bean id="legouActiveMQListene" class="com.legou.search.mq.LegouActiveMQListener" ></bean>
     
     <!--监听器配置  -->
     <bean class="org.springframework.jms.listener.DefaultMessageListenerContainer">

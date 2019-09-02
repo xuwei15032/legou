@@ -58,15 +58,15 @@ public class TestSolr {
 			 
 		}
 		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
+	
 		
-		
+	}
+	
+	@Test
+	public void test1() {
+		System.setProperty("fsa", "5456");
+		System.out.println(System.getProperty("fsa"));
+		String sda ="";
 	}
 	
 	

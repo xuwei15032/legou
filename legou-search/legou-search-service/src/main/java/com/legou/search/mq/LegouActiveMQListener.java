@@ -15,26 +15,19 @@ import com.legou.common.pojo.SearchItem;
 import com.legou.search.mapper.ItemMapper;
 
 public class LegouActiveMQListener implements MessageListener {
-
 	@Autowired
 	ItemMapper itemMapper;
-
 	@Autowired
 	SolrServer solrServer;
-
 	@Override
 	public void onMessage(Message message) {
-
 		TextMessage textMessage = (TextMessage) message;
 		try {
 			String itemid = textMessage.getText();
 			// 根据商品id取出商品信息导入索引库
 			long itemidLong = Long.parseLong(itemid);
-
 			// itemmap
-
 			SearchItem searchItem = itemMapper.getItemById(itemidLong);
-
 			SolrInputDocument document = new SolrInputDocument();
 			document.addField("id", searchItem.getId());
 			document.addField("item_title", searchItem.getTitle());
@@ -48,11 +41,8 @@ public class LegouActiveMQListener implements MessageListener {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		} catch (JMSException e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

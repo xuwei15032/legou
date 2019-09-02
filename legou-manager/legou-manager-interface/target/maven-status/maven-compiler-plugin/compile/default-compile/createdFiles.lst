@@ -1,2 +1,3 @@
 com\legou\service\ItemService.class
 com\legou\service\ItemCatService.class
+com\legou\service\ItemDescService.class

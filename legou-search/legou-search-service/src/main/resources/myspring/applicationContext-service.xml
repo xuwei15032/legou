@@ -11,7 +11,7 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
 	<!-- 配置包扫描器 -->
-	<context:component-scan base-package="com.legou.search"/>
+	<context:component-scan base-package="com.legou.search" />
 	
 	<!--通过dubbo，把服务注册到注册中心  -->
 	<!--指定服务提供者项目的名字  -->

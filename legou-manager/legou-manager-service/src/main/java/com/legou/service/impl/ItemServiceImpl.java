@@ -14,10 +14,13 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 import org.springframework.stereotype.Service;
 
+import com.alibaba.druid.util.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.legou.common.pojo.EasyUIDataGridResult;
+import com.legou.common.redis.JedisClientPool;
 import com.legou.common.utils.IDUtils;
+import com.legou.common.utils.JsonUtils;
 import com.legou.common.utils.LegouResult;
 import com.legou.mapper.TbItemDescMapper;
 import com.legou.mapper.TbItemMapper;
@@ -41,11 +44,24 @@ public class ItemServiceImpl implements ItemService {
 	//resource 默认按照名字注入
     @Resource
 	private Destination activeMQTopic;
+    
+	@Autowired
+	private JedisClientPool jedisClientPool;
 
 	@Override
 	public TbItem getItem(Long itemId) {
-
-		return tbItemMapper.selectByPrimaryKey(itemId);
+		
+		String itemRedis = jedisClientPool.hget("item", itemId+"");		
+		if(!StringUtils.isEmpty(itemRedis)) {
+			System.out.println("从缓存中获取item");
+			return JsonUtils.jsonToPojo(itemRedis,TbItem.class);
+		}
+		System.out.println("从数据库中获取item");	
+		TbItem tbItem = tbItemMapper.selectByPrimaryKey(itemId);
+		jedisClientPool.hset("item", itemId+"", JsonUtils.objectToJson(tbItem));
+		jedisClientPool.expire("item",60);
+		return tbItem;
+		
 	}
 
 	@Override

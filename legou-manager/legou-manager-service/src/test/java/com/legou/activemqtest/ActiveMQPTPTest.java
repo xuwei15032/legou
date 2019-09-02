@@ -107,7 +107,10 @@ public class ActiveMQPTPTest {
 
 	}
 	
-	
+	@Test
+	public void test1() {
+		System.out.println("".equals(null));
+	}
 	
 
 

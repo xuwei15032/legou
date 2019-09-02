@@ -1,3 +1,4 @@
 com\legou\service\impl\ItemCatServiceImpl.class
 com\legou\service\impl\ItemServiceImpl.class
 com\legou\service\impl\ItemServiceImpl$1.class
+com\legou\service\impl\ItemDescServiceImpl.class
